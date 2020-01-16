@@ -1,7 +1,11 @@
 import React from "react";
+import styled from "styled-components";
+import tw from "tailwind.macro";
 
-function App() {
-  return <div className="App">app</div>;
+const PageWrapper = styled.div`
+  ${tw`h-screen bg-gray-800`}
+`;
+
+export default function() {
+  return <PageWrapper>Testing</PageWrapper>;
 }
-
-export default App;
