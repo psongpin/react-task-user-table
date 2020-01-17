@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import tw from "tailwind.macro";
+
 import UsersTable from "./components/UsersTable";
 import Graph from "./components/Graph";
+import filterUsers from "./utils/user";
+import Filter from "./components/Filter";
 
 // Styles
 
@@ -19,6 +22,7 @@ const useAppUsers = () => {
   // App states
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState({ name: "" });
 
   // Side effect for fetching user data
   useEffect(() => {
@@ -33,20 +37,23 @@ const useAppUsers = () => {
     fetchUsers();
   }, []);
 
-  return { users, loading };
+  return { users, loading, filter, setFilter };
 };
 
 // Main App
 const App = () => {
-  const { users, loading } = useAppUsers();
+  const { users, loading, filter, setFilter } = useAppUsers();
+
+  const filteredUsers = filterUsers(users, filter);
 
   return (
     <PageWrapper>
       <Container>
         {loading && <div>loading...</div>}
         <>
-          <UsersTable users={users} />
-          <Graph data={users} />
+          <Filter setFilter={setFilter} />
+          <UsersTable users={filteredUsers} />
+          <Graph data={filteredUsers} />
         </>
       </Container>
     </PageWrapper>

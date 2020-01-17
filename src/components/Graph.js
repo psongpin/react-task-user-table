@@ -1,5 +1,6 @@
 import React from "react";
 import { ResponsiveBar } from "@nivo/bar";
+import PropTypes from "prop-types";
 
 const Graph = ({ data }) => {
   const numberOfMaleUsers = data.filter(user => user.gender === "male").length;
@@ -92,6 +93,17 @@ const Graph = ({ data }) => {
       />
     </div>
   );
+};
+
+Graph.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      gender: PropTypes.string.isRequired,
+      age: PropTypes.number.isRequired
+    }).isRequired
+  ).isRequired
 };
 
 export default Graph;
