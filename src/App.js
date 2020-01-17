@@ -9,7 +9,7 @@ import Header from "./components/Header";
 
 // Styles
 const ContentWrapper = styled.div`
-  ${tw`h-screen bg-gray-800 pt-24`};
+  ${tw`min-h-screen bg-gray-800 pt-24`};
 `;
 
 const Container = styled.div`
@@ -17,10 +17,14 @@ const Container = styled.div`
 `;
 
 const Grid = styled.div`
-  ${tw`flex w-3/4 max-w-full mx-auto`}
+  ${tw`lg:flex xl:w-3/4 max-w-full mx-auto`}
 `;
 const Column = styled.div`
-  ${tw`w-1/2 px-4`}
+  ${tw`lg:w-1/2 lg:px-4`}
+`;
+
+const Spacer = styled.div`
+  ${tw`lg:hidden mb-12`}
 `;
 
 // React hook for users state and side effects
@@ -62,6 +66,7 @@ const App = () => {
             <Column>
               <UsersTable users={filteredUsers} />
             </Column>
+            <Spacer />
             <Column>
               <Graph data={filteredUsers} />
             </Column>

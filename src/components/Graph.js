@@ -45,7 +45,7 @@ const Graph = ({ data }) => {
         data={graphData}
         indexBy="gender"
         keys={["number"]}
-        margin={{ top: 10, right: 130, bottom: 50, left: 60 }}
+        margin={{ top: 40, right: 0, bottom: 50, left: 60 }}
         padding={0.3}
         colors={["#4FD1C5", "#FC8181"]}
         colorBy="index"
@@ -71,11 +71,11 @@ const Graph = ({ data }) => {
         legends={[
           {
             dataFrom: "indexes",
-            anchor: "top-right",
-            direction: "column",
+            anchor: "top",
+            direction: "row",
             justify: false,
-            translateX: 120,
-            translateY: 0,
+            translateX: 0,
+            translateY: -40,
             itemsSpacing: 5,
             itemWidth: 100,
             itemHeight: 20,

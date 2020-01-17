@@ -6,7 +6,7 @@ import tx from "tailwind.macro";
 import Filter from "./Filter";
 
 const HeaderWrapper = styled.header`
-  ${tx`h-16 bg-green-400 flex items-center justify-center fixed top-0 left-0 right-0 shadow-lg`}
+  ${tx`h-16 bg-green-400 flex items-center justify-center fixed top-0 left-0 right-0 shadow-lg px-4`}
 `;
 
 const Header = ({ setFilter }) => {

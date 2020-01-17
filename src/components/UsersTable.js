@@ -5,7 +5,7 @@ import tx from "tailwind.macro";
 
 const TableWrapper = styled.div`
   ${tx`w-full overflow-auto`};
-  height: 500px;
+  max-height: 500px;
 `;
 
 const Table = styled.table`
