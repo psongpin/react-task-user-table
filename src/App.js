@@ -6,6 +6,7 @@ import UsersTable from "./components/UsersTable";
 import Graph from "./components/Graph";
 import filterUsers from "./utils/user";
 import Header from "./components/Header";
+import Loader from "./components/Loader";
 
 // Styles
 const ContentWrapper = styled.div`
@@ -61,7 +62,7 @@ const App = () => {
       <Header setFilter={setFilter} />
       <ContentWrapper>
         <Container>
-          {loading && <div>loading...</div>}
+          {loading && <Loader />}
           <Grid>
             <Column>
               <UsersTable users={filteredUsers} />
