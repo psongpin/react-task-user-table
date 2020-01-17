@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import tw from "tailwind.macro";
 import UsersTable from "./components/UsersTable";
+import Graph from "./components/Graph";
 
 // Styles
 
@@ -42,7 +43,11 @@ const App = () => {
   return (
     <PageWrapper>
       <Container>
-        {loading ? <div>loading...</div> : <UsersTable users={users} />}
+        {loading && <div>loading...</div>}
+        <>
+          <UsersTable users={users} />
+          <Graph data={users} />
+        </>
       </Container>
     </PageWrapper>
   );
