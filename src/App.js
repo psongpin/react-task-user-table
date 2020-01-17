@@ -5,12 +5,11 @@ import tw from "tailwind.macro";
 import UsersTable from "./components/UsersTable";
 import Graph from "./components/Graph";
 import filterUsers from "./utils/user";
-import Filter from "./components/Filter";
+import Header from "./components/Header";
 
 // Styles
-
-const PageWrapper = styled.div`
-  ${tw`h-screen bg-gray-800`};
+const ContentWrapper = styled.div`
+  ${tw`h-screen bg-gray-800 pt-24`};
 `;
 
 const Container = styled.div`
@@ -47,16 +46,16 @@ const App = () => {
   const filteredUsers = filterUsers(users, filter);
 
   return (
-    <PageWrapper>
-      <Container>
-        {loading && <div>loading...</div>}
-        <>
-          <Filter setFilter={setFilter} />
+    <>
+      <Header setFilter={setFilter} />
+      <ContentWrapper>
+        <Container>
+          {loading && <div>loading...</div>}
           <UsersTable users={filteredUsers} />
           <Graph data={filteredUsers} />
-        </>
-      </Container>
-    </PageWrapper>
+        </Container>
+      </ContentWrapper>
+    </>
   );
 };
 
