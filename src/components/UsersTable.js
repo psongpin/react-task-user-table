@@ -1,29 +1,50 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+import tx from "tailwind.macro";
+
+const TableWrapper = styled.div`
+  ${tx`w-full overflow-auto`};
+  height: 500px;
+`;
+
+const Table = styled.table`
+  ${tx`w-full bg-white text-left rounded`};
+`;
+
+const Th = styled.th`
+  ${tx`h-12 font-semibold border-b border-gray-400 px-4 bg-gray-300 text-gray-600 text-base`}
+`;
+
+const Td = styled.td`
+  ${tx`border-b border-gray-400 px-4 py-2 text-gray-800 text-sm`}
+`;
 
 const theads = ["Name", "Gender", "Age"];
 
 const UsersTable = ({ users }) => {
   return (
-    <table>
-      <thead>
-        <tr>
-          {theads.map(thead => (
-            <th key={thead}>{thead}</th>
-          ))}
-        </tr>
-      </thead>
-
-      <tbody>
-        {users.map(({ id, name, gender, age }) => (
-          <tr key={id}>
-            <td>{name}</td>
-            <td>{gender}</td>
-            <td>{age}</td>
+    <TableWrapper>
+      <Table>
+        <thead>
+          <tr>
+            {theads.map(thead => (
+              <Th key={thead}>{thead}</Th>
+            ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          {users.map(({ id, name, gender, age }) => (
+            <tr key={id}>
+              <Td>{name}</Td>
+              <Td>{gender}</Td>
+              <Td>{age}</Td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </TableWrapper>
   );
 };
 

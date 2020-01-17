@@ -16,6 +16,13 @@ const Container = styled.div`
   ${tw`px-4`}
 `;
 
+const Grid = styled.div`
+  ${tw`flex w-3/4 max-w-full mx-auto`}
+`;
+const Column = styled.div`
+  ${tw`w-1/2 px-4`}
+`;
+
 // React hook for users state and side effects
 const useAppUsers = () => {
   // App states
@@ -51,8 +58,14 @@ const App = () => {
       <ContentWrapper>
         <Container>
           {loading && <div>loading...</div>}
-          <UsersTable users={filteredUsers} />
-          <Graph data={filteredUsers} />
+          <Grid>
+            <Column>
+              <UsersTable users={filteredUsers} />
+            </Column>
+            <Column>
+              <Graph data={filteredUsers} />
+            </Column>
+          </Grid>
         </Container>
       </ContentWrapper>
     </>

@@ -1,6 +1,13 @@
 import React from "react";
 import { ResponsiveBar } from "@nivo/bar";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+import tx from "tailwind.macro";
+
+const GraphWrapper = styled.div`
+  ${tx`w-full`};
+  height: 500px;
+`;
 
 const Graph = ({ data }) => {
   const numberOfMaleUsers = data.filter(user => user.gender === "male").length;
@@ -33,14 +40,14 @@ const Graph = ({ data }) => {
   };
 
   return (
-    <div style={{ height: 600, width: 720 }}>
+    <GraphWrapper>
       <ResponsiveBar
         data={graphData}
         indexBy="gender"
         keys={["number"]}
-        margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+        margin={{ top: 10, right: 130, bottom: 50, left: 60 }}
         padding={0.3}
-        colors={["#FC8181", "#4FD1C5"]}
+        colors={["#4FD1C5", "#FC8181"]}
         colorBy="index"
         axisTop={null}
         axisRight={null}
@@ -56,7 +63,7 @@ const Graph = ({ data }) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: "Number",
+          legend: "Number of Users",
           legendPosition: "middle",
           legendOffset: -40
         }}
@@ -64,7 +71,7 @@ const Graph = ({ data }) => {
         legends={[
           {
             dataFrom: "indexes",
-            anchor: "bottom-right",
+            anchor: "top-right",
             direction: "column",
             justify: false,
             translateX: 120,
@@ -91,7 +98,7 @@ const Graph = ({ data }) => {
         motionDamping={40}
         theme={theme}
       />
-    </div>
+    </GraphWrapper>
   );
 };
 
