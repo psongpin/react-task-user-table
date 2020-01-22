@@ -2,6 +2,38 @@ import React from "react";
 import styled from "styled-components";
 import tx from "tailwind.macro";
 
+const circleCss = [
+  { top: "63", left: "63", animationDelay: "-0.036" },
+  { top: "68", left: "56", animationDelay: "-0.072" },
+  { top: "71", left: "48", animationDelay: "-0.108" },
+  { top: "72", left: "40", animationDelay: "-0.144" },
+  { top: "71", left: "32", animationDelay: "-0.18" },
+  { top: "68", left: "24", animationDelay: "-0.216" },
+  { top: "63", left: "17", animationDelay: "-0.252" },
+  { top: "56", left: "12", animationDelay: "-0.288" }
+];
+
+const generateCircleCss = () => {
+  let str = "";
+
+  circleCss.map((css, index) => {
+    str += `
+      div:nth-child(${index + 1}) {
+        animation-delay: ${css.animationDelay}s;
+
+        &:after {
+          top: ${css.top}px;
+          left: ${css.left}px;
+        }
+      }
+    `;
+
+    return null;
+  });
+
+  return str;
+};
+
 const Overlay = styled.div`
   ${tx`w-screen h-screen fixed top-0 bottom-0 left-0 right-0 z-50`};
   background: rgba(254, 254, 254, 0.8);
@@ -11,86 +43,30 @@ const RollerWrapper = styled.div`
   ${tx`fixed z-50`};
   top: 50%;
   left: 50%;
-  transform-translate: -50%;
+  transform: translate(-50%);
 `;
 
 const Roller = styled.div`
-  display: inline-block;
-  position: relative;
+  ${tx`inline-block relative`};
   width: 80px;
   height: 80px;
 
   div {
     animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     transform-origin: 40px 40px;
+
+    &:after {
+      ${tx`block absolute bg-green-400`};
+      content: " ";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      margin: -4px 0 0 -4px;
+    }
   }
 
-  div:after {
-    content: " ";
-    display: block;
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #68d391;
-    margin: -4px 0 0 -4px;
-  }
-  div:nth-child(1) {
-    animation-delay: -0.036s;
-  }
-  div:nth-child(1):after {
-    top: 63px;
-    left: 63px;
-  }
-  div:nth-child(2) {
-    animation-delay: -0.072s;
-  }
-  div:nth-child(2):after {
-    top: 68px;
-    left: 56px;
-  }
-  div:nth-child(3) {
-    animation-delay: -0.108s;
-  }
-  div:nth-child(3):after {
-    top: 71px;
-    left: 48px;
-  }
-  div:nth-child(4) {
-    animation-delay: -0.144s;
-  }
-  div:nth-child(4):after {
-    top: 72px;
-    left: 40px;
-  }
-  div:nth-child(5) {
-    animation-delay: -0.18s;
-  }
-  div:nth-child(5):after {
-    top: 71px;
-    left: 32px;
-  }
-  div:nth-child(6) {
-    animation-delay: -0.216s;
-  }
-  div:nth-child(6):after {
-    top: 68px;
-    left: 24px;
-  }
-  div:nth-child(7) {
-    animation-delay: -0.252s;
-  }
-  div:nth-child(7):after {
-    top: 63px;
-    left: 17px;
-  }
-  div:nth-child(8) {
-    animation-delay: -0.288s;
-  }
-  div:nth-child(8):after {
-    top: 56px;
-    left: 12px;
-  }
+  ${generateCircleCss()}
+
   @keyframes lds-roller {
     0% {
       transform: rotate(0deg);
